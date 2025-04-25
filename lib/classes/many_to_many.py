@@ -31,21 +31,30 @@ class Author:
 
 
     def articles(self):
-        pass
+     articles = [article for article in Article.all if article.author == self]
+     return articles if articles else None
 
 
     def magazines(self):
+     articles = self.articles()
+     if not articles:
+         return None
+     return list({article.magazine for article in articles})
+      
 
 
-        pass
+        
 
 
     def add_article(self, magazine, title):
-        pass
+        return Article(self,magazine,title)
 
 
     def topic_areas(self):
-        pass
+        magazines=self.magazines()
+        if not magazines:
+            return None
+        return list({magazine.category for magazine in magazines})
         
 class Magazine:
     def __init__(self, name, category):
