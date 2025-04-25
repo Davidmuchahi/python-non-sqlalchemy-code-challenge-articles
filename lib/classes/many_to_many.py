@@ -6,10 +6,28 @@ class Article:
         self.magazine = magazine
         self.title = title
         Article.all.append(self)
+
+    @property
+    def title(self):
+        return self._title
+    
+    @title.setter
+    def title(self, value):
+        pass
         
 class Author:
     def __init__(self, name):
         self.name = name
+
+
+    @property
+    def name(self):
+        return self._name
+    
+
+    @name.setter
+    def name(self, value):
+        pass 
 
 
     def articles(self):
@@ -37,7 +55,7 @@ class Magazine:
 
     def articles(self):
         pass
-    
+
     def contributors(self):
         pass
 
