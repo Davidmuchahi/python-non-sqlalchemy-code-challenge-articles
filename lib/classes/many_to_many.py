@@ -81,17 +81,43 @@ class Magazine:
 
 
     def articles(self):
-        pass
+        articles = [article for article in Article.all if article.magazine == self]
+        return articles if articles else None
+     
 
     def contributors(self):
-        pass
+        articles=self.articles()
+        if not articles:
+            return None
+        return list({article.author for article in articles})
 
 
     def article_titles(self):
 
+        articles=self.articles()
+        if not articles:
+            return None
+        return [article.title for article in articles]
 
-        pass
+
+        
 
 
     def contributing_authors(self):
-        pass
+        articles=self.articles()
+        if not articles:
+            return None
+        
+
+
+        author_counts=[]
+        for article in articles:
+            author=article.author
+            author_counts[author]=author_counts.get(author,0)+1
+
+
+        contributing=[author for author, count in author_counts.items()if count>2]
+
+        return contributing if contributing else None
+
+    
